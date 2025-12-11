@@ -9,9 +9,16 @@
   let show_notification = $state(false);
   let notification_message = $state('');
 
+  let in_stock = $derived(product.stock > 0);
+
   function add_to_cart() {
-    cart.addItem(product);
-    notification_message = `${product.name} added to cart! 🧸`;
+    cart.addItem({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image
+    });
+    notification_message = `${product.name} added to cart!`;
     show_notification = true;
   }
 
@@ -20,174 +27,115 @@
   }
 </script>
 
-<article class="product-card">
-  <a href="/product/{product.id}" class="product-link">
-    <div class="product-image">
-      <img src={product.image_url} alt={product.name} />
-    </div>
-    
-    <div class="product-info">
-      <h3>{product.name}</h3>
-      <p class="product-category">{product.category}</p>
-      <p class="product-description">{product.description}</p>
-      
-      <div class="product-details">
-        <span class="product-size">Size: {product.size}</span>
-        <span class="product-stock" class:out-of-stock={product.quantity === 0}>
-          {product.quantity > 0 ? `${product.quantity} in stock` : 'Out of stock'}
-        </span>
-      </div>
-    </div>
-  </a>
-  
-  <div class="product-footer">
-    <span class="product-price">${product.price.toFixed(2)}</span>
-    <Button 
-      variant={product.quantity > 0 ? 'success' : 'secondary'}
-      onclick={add_to_cart}
-      disabled={product.quantity === 0}
-    >
-      {product.quantity > 0 ? 'Add to Cart 🛒' : 'Out of Stock'}
-    </Button>
-  </div>
-</article>
-
 <Notification 
   message={notification_message} 
   visible={show_notification} 
   onclose={close_notification} 
 />
 
+<div class="product-card">
+  <a href="/product/{product.id}" class="product-link">
+    <div class="image-container">
+      <img src={product.image} alt={product.name} />
+      {#if product.category}
+        <span class="category-badge">{product.category}</span>
+      {/if}
+    </div>
+    
+    <div class="product-info">
+      <h3>{product.name}</h3>
+      <p class="product-price">${product.price.toFixed(2)}</p>
+      <p class="product-stock" class:out-of-stock={!in_stock}>
+        {in_stock ? `${product.stock} in stock` : 'Out of stock'}
+      </p>
+    </div>
+  </a>
+
+  <Button 
+    variant="success" 
+    full_width={true}
+    disabled={!in_stock}
+    onclick={add_to_cart}
+  >
+    {in_stock ? 'Add to Cart' : 'Out of Stock'}
+  </Button>
+</div>
+
 <style>
   .product-card {
-    background: #FFF8F0;
-    border-radius: 16px;
+    background: var(--color-bg-card);
+    border-radius: var(--radius-xl);
+    border: 2px solid var(--color-primary-lighter);
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(139, 69, 19, 0.15);
-    transition: transform 0.3s, box-shadow 0.3s;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    border: 2px solid #F4A460;
+    transition: transform 0.2s, box-shadow 0.2s;
   }
 
   .product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(139, 69, 19, 0.25);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
   }
 
   .product-link {
-    text-decoration: none;
+    display: block;
     color: inherit;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
   }
 
-  .product-image {
-    width: 100%;
-    height: 280px;
+  .image-container {
+    position: relative;
+    aspect-ratio: 1;
     overflow: hidden;
-    background: #FFFACD;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
-  .product-image img {
+  .image-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s;
   }
 
-  .product-card:hover .product-image img {
+  .product-card:hover img {
     transform: scale(1.05);
   }
 
+  .category-badge {
+    position: absolute;
+    top: var(--spacing-sm);
+    left: var(--spacing-sm);
+    background: var(--color-bg-highlight);
+    color: var(--color-primary);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+  }
+
   .product-info {
-    padding: 1.25rem;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+    padding: var(--spacing-md);
   }
 
   h3 {
-    margin: 0 0 0.5rem 0;
-    font-size: 1.25rem;
-    color: #4A3728;
-    font-weight: 800;
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-xs);
   }
 
-  .product-category {
-    color: #8B4513;
-    font-size: 0.875rem;
-    font-weight: 600;
-    margin: 0 0 0.5rem 0;
-    text-transform: uppercase;
-    background: #FFFACD;
-    display: inline-block;
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
-    width: fit-content;
-  }
-
-  .product-description {
-    color: #8B7355;
-    font-size: 0.875rem;
-    margin: 0 0 1rem 0;
-    flex: 1;
-    line-height: 1.5;
-  }
-
-  .product-details {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    font-size: 0.875rem;
-    color: #6B5344;
+  .product-price {
+    font-size: var(--font-size-xl);
+    font-weight: bold;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-xs);
   }
 
   .product-stock {
-    color: #48bb78;
+    font-size: var(--font-size-md);
+    color: var(--color-success);
     font-weight: 600;
   }
 
   .product-stock.out-of-stock {
-    color: #fc8181;
+    color: var(--color-danger);
   }
 
-  .product-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.25rem;
-    border-top: 2px dashed #E8D5C4;
-    background: #FFF5EB;
-  }
-
-  .product-price {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #8B4513;
-  }
-
-  @media (max-width: 768px) {
-    .product-image {
-      height: 220px;
-    }
-
-    h3 {
-      font-size: 1.1rem;
-    }
-
-    .product-footer {
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .product-footer :global(.btn) {
-      width: 100%;
-    }
+  .product-card :global(.btn) {
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
   }
 </style>

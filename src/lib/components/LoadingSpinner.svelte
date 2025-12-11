@@ -1,26 +1,10 @@
 <!-- src/lib/components/LoadingSpinner.svelte -->
 <script>
-  let { 
-    message = 'Loading...',
-    size = 'medium'
-  } = $props();
-
-  const sizes = {
-    small: { spinner: 30, border: 3 },
-    medium: { spinner: 50, border: 4 },
-    large: { spinner: 70, border: 5 }
-  };
+  let { message = 'Loading...' } = $props();
 </script>
 
 <div class="loading">
-  <div 
-    class="spinner"
-    style="
-      width: {sizes[size].spinner}px; 
-      height: {sizes[size].spinner}px;
-      border-width: {sizes[size].border}px;
-    "
-  ></div>
+  <img src="/images/icon.png" alt="Loading" class="loading-icon" />
   {#if message}
     <p>{message}</p>
   {/if}
@@ -29,24 +13,23 @@
 <style>
   .loading {
     text-align: center;
-    padding: 4rem 0;
+    padding: var(--spacing-xl) 0;
   }
 
-  .spinner {
-    border-style: solid;
-    border-color: #E8D5C4;
-    border-top-color: #8B4513;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin: 0 auto 1rem;
+  .loading-icon {
+    width: var(--icon-lg);
+    height: var(--icon-lg);
+    margin-bottom: var(--spacing-md);
+    animation: bounce 1s ease-in-out infinite;
   }
 
-  @keyframes spin {
-    to { transform: rotate(360deg); }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
   }
 
   p {
-    color: #8B7355;
-    font-size: 1rem;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-lg);
   }
 </style>

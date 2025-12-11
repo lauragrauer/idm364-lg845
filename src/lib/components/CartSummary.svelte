@@ -4,20 +4,13 @@
   import Button from './Button.svelte';
   import Notification from './Notification.svelte';
 
-  let { on_checkout, on_clear_cart } = $props();
-
   let show_notification = $state(false);
   let notification_message = $state('');
 
-  function handle_clear_cart() {
+  function clear_cart() {
     cart.clearCart();
-    notification_message = 'Cart cleared! 🗑️';
+    notification_message = 'Cart cleared!';
     show_notification = true;
-    if (on_clear_cart) on_clear_cart();
-  }
-
-  function handle_checkout() {
-    if (on_checkout) on_checkout();
   }
 
   function close_notification() {
@@ -25,97 +18,75 @@
   }
 </script>
 
-<aside class="cart-summary">
-  <h2>🧾 Order Summary</h2>
-  
-  <div class="summary-row">
-    <span>Items ({cart.itemCount}):</span>
-    <span>${cart.total.toFixed(2)}</span>
-  </div>
-
-  <div class="summary-row">
-    <span>Shipping:</span>
-    <span class="free-shipping">FREE 🎉</span>
-  </div>
-
-  <div class="summary-row total">
-    <strong>Total:</strong>
-    <strong class="total-amount">${cart.total.toFixed(2)}</strong>
-  </div>
-
-  <Button variant="primary" full_width={true} onclick={handle_checkout}>
-    🛍️ Proceed to Checkout
-  </Button>
-
-  <a href="/" class="continue-link">← Continue Shopping</a>
-
-  <Button variant="danger-outline" full_width={true} onclick={handle_clear_cart}>
-    🗑️ Clear Cart
-  </Button>
-</aside>
-
 <Notification 
   message={notification_message} 
   visible={show_notification} 
   onclose={close_notification} 
 />
 
+<div class="cart-summary">
+  <h2>Order Summary</h2>
+  
+  <div class="summary-row">
+    <span>Subtotal ({cart.itemCount} items)</span>
+    <span>${cart.total.toFixed(2)}</span>
+  </div>
+  
+  <div class="summary-row">
+    <span>Shipping</span>
+    <span class="free-shipping">FREE</span>
+  </div>
+  
+  <div class="summary-row total-row">
+    <span>Total</span>
+    <span class="grand-total">${cart.total.toFixed(2)}</span>
+  </div>
+
+  <Button variant="success" full_width={true} size="large">
+    Checkout
+  </Button>
+
+  <Button variant="danger-outline" full_width={true} onclick={clear_cart}>
+    Clear Cart
+  </Button>
+</div>
+
 <style>
   .cart-summary {
-    position: sticky;
-    top: 100px;
-    background: #FFF8F0;
-    padding: 2rem;
-    border-radius: 20px;
-    box-shadow: 0 4px 12px rgba(139, 69, 19, 0.15);
-    border: 3px solid #F4A460;
+    background: var(--color-bg-card);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-xl);
+    border: 2px solid var(--color-primary-lighter);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
   }
 
-  .cart-summary h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    color: #4A3728;
+  h2 {
+    font-size: var(--font-size-xl);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 2px solid var(--color-border);
   }
 
   .summary-row {
     display: flex;
     justify-content: space-between;
-    padding: 0.75rem 0;
-    color: #6B5344;
+    font-size: var(--font-size-md);
   }
 
   .free-shipping {
-    color: #48bb78;
+    color: var(--color-success);
     font-weight: 600;
   }
 
-  .summary-row.total {
-    border-top: 2px dashed #E8D5C4;
-    margin-top: 1rem;
-    padding-top: 1rem;
-    font-size: 1.25rem;
+  .total-row {
+    padding-top: var(--spacing-md);
+    border-top: 2px solid var(--color-border);
+    font-weight: bold;
   }
 
-  .total-amount {
-    color: #8B4513;
-  }
-
-  .continue-link {
-    display: block;
-    text-align: center;
-    margin: 1rem 0;
-    color: #8B4513;
-    font-weight: 600;
-    transition: transform 0.2s;
-  }
-
-  .continue-link:hover {
-    transform: translateX(-5px);
-  }
-
-  @media (max-width: 968px) {
-    .cart-summary {
-      position: static;
-    }
+  .grand-total {
+    font-size: var(--font-size-xl);
+    color: var(--color-primary);
   }
 </style>

@@ -1,57 +1,53 @@
 <!-- src/lib/components/EmptyCart.svelte -->
 <script>
-  let { 
-    icon = '🧸', 
-    title = 'Your cart is empty',
-    message = 'Add some adorable plushies to get started!',
-    link_href = '/',
-    link_text = 'Continue Shopping'
-  } = $props();
 </script>
 
 <div class="empty-cart">
-  <div class="empty-icon">{icon}</div>
-  <h2>{title}</h2>
-  <p>{message}</p>
-  <a href={link_href} class="continue-shopping">{link_text}</a>
+  <img src="/images/icon.png" alt="Rilakkuma" class="empty-icon" />
+  <h2>Your cart is empty</h2>
+  <p>Add some adorable plushies to get started!</p>
+  <a href="/" class="continue-shopping">Continue Shopping</a>
 </div>
 
 <style>
   .empty-cart {
     text-align: center;
-    padding: 4rem 2rem;
-    background: #FFF8F0;
-    border-radius: 20px;
-    border: 3px dashed #F4A460;
+    padding: var(--spacing-xl);
+    background: var(--color-bg-card);
+    border-radius: var(--radius-xl);
+    border: 3px dashed var(--color-primary-lighter);
   }
 
   .empty-icon {
-    font-size: 6rem;
-    margin-bottom: 1rem;
+    width: var(--icon-xl);
+    height: var(--icon-xl);
+    margin-bottom: var(--spacing-md);
   }
 
-  .empty-cart h2 {
-    color: #4A3728;
-    margin-bottom: 0.5rem;
+  h2 {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-sm);
   }
 
-  .empty-cart p {
-    color: #8B7355;
-    margin-bottom: 2rem;
+  p {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-md);
+    margin-bottom: var(--spacing-xl);
   }
 
   .continue-shopping {
     display: inline-block;
-    padding: 1rem 2rem;
-    background: #614632;
+    padding: var(--spacing-md) var(--spacing-xl);
+    background: var(--color-header);
     color: white;
-    border-radius: 30px;
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-md);
     font-weight: 600;
     transition: transform 0.2s, box-shadow 0.2s;
   }
 
   .continue-shopping:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(139, 69, 19, 0.4);
+    box-shadow: var(--shadow-lg);
   }
 </style>

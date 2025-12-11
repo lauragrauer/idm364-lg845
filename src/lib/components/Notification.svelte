@@ -20,7 +20,7 @@
 
 {#if visible}
   <div class="notification">
-    <span class="notification-icon">🧸</span>
+    <img src="/images/icon.png" alt="" class="notification-icon" />
     <span class="notification-message">{message}</span>
     <button class="notification-close" onclick={onclose}>x</button>
   </div>
@@ -31,14 +31,14 @@
     position: fixed;
     top: 100px;
     right: 20px;
-    background: #4A3728;
+    background: var(--color-header);
     color: white;
-    padding: 1rem 1.5rem;
-    border-radius: 12px;
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-md);
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    gap: var(--spacing-md);
+    box-shadow: var(--shadow-lg);
     z-index: 1000;
     animation: slide-in 0.3s ease;
   }
@@ -55,10 +55,12 @@
   }
 
   .notification-icon {
-    font-size: 1.5rem;
+    width: var(--icon-sm);
+    height: var(--icon-sm);
   }
 
   .notification-message {
+    font-size: var(--font-size-md);
     font-weight: 600;
   }
 
@@ -68,9 +70,9 @@
     color: white;
     cursor: pointer;
     opacity: 0.7;
-    font-size: 1rem;
+    font-size: var(--font-size-lg);
     padding: 0;
-    margin-left: 0.5rem;
+    margin-left: var(--spacing-sm);
   }
 
   .notification-close:hover {

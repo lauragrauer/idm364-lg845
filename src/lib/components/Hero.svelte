@@ -1,29 +1,24 @@
 <!-- src/lib/components/Hero.svelte -->
 <script>
-  let { 
-    icon = '🧸',
-    title = 'Welcome to Rilakkuma Shop',
-    subtitle = 'Find your new cuddly friend from our collection of adorable plushies!'
-  } = $props();
 </script>
 
 <section class="hero">
-  <span class="hero-icon">{icon}</span>
-  <h1>{title}</h1>
-  <p>{subtitle}</p>
+  <img src="/images/icon.png" alt="Rilakkuma" class="hero-icon" />
+  <h1>Welcome to Rilakkuma Shop</h1>
+  <p>Find your new cuddly friend from our collection of adorable plushies!</p>
 </section>
 
 <style>
   .hero {
     text-align: center;
-    margin-bottom: 3rem;
-    padding: 2rem 0;
+    margin-bottom: var(--spacing-xl);
+    padding: var(--spacing-xl) 0;
   }
 
   .hero-icon {
-    font-size: 4rem;
-    display: block;
-    margin-bottom: 1rem;
+    width: var(--icon-xl);
+    height: var(--icon-xl);
+    margin-bottom: var(--spacing-md);
     animation: bounce 2s ease-in-out infinite;
   }
 
@@ -33,28 +28,23 @@
   }
 
   h1 {
-    font-size: 3rem;
-    color: #4A3728;
-    margin-bottom: 1rem;
-    font-family: 'Nunito', sans-serif;
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--spacing-md);
   }
 
   p {
-    font-size: 1.25rem;
-    color: #8B7355;
+    font-size: var(--font-size-lg);
+    color: var(--color-text-muted);
   }
 
   @media (max-width: 768px) {
     h1 {
-      font-size: 2rem;
-    }
-
-    p {
-      font-size: 1rem;
+      font-size: var(--font-size-2xl);
     }
 
     .hero-icon {
-      font-size: 3rem;
+      width: var(--icon-lg);
+      height: var(--icon-lg);
     }
   }
 </style>
