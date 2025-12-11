@@ -14,9 +14,9 @@
   <footer>
     <div class="container">
       <div class="footer-content">
-<img class="footer-bear" src="/images/icon-bear.webp" alt="Rilakkuma" />
-        <p>&copy; 2024 Rilakkuma Shop. Made with 💕</p>
-        <p class="footer-note">All plushies are looking for a loving home!</p>
+        <span class="footer-bear">🧸</span>
+        <p>&copy; 2025 Rilakkuma Shop 💕💕💕💕</p>
+        <p class="footer-note">Please give these guys a home!</p>
       </div>
     </div>
   </footer>
@@ -36,9 +36,9 @@
   }
 
   footer {
-    background: #D2691E;
+    background: #614632;
     color: white;
-    padding: 2rem 0;
+    padding: 2rem 1rem;
     text-align: center;
     margin-top: 4rem;
   }

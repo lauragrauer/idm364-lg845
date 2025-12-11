@@ -104,7 +104,7 @@
   .continue-shopping {
     display: inline-block;
     padding: 1rem 2rem;
-    background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
+    background: #614632;
     color: white;
     border-radius: 30px;
     font-weight: 600;
@@ -172,7 +172,7 @@
     width: 100%;
     padding: 1.25rem;
     margin-top: 1.5rem;
-    background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
+    background: #614632;
     color: white;
     border: none;
     border-radius: 30px;
