@@ -7,7 +7,7 @@
   <div class="container">
     <nav>
       <a href="/" class="logo">
-        <img src="/images/icon.png" alt="Rilakkuma" class="logo-icon" />
+        <img src="static/images/icon.png" alt="Rilakkuma" class="logo-icon" />
         <span class="logo-text">RILAKKUMA SHOP</span>
       </a>
       
