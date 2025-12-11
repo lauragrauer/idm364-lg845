@@ -1,11 +1,13 @@
 <!-- src/lib/components/CartItem.svelte -->
 <script>
   import { cart } from '$lib/stores/cart.svelte.js';
+  import QuantityInput from './QuantityInput.svelte';
+  import Button from './Button.svelte';
 
   let { item } = $props();
 
   function updateQuantity(newQuantity) {
-    cart.updateQuantity(item.id, parseInt(newQuantity));
+    cart.updateQuantity(item.id, newQuantity);
   }
 
   function removeFromCart() {
@@ -15,7 +17,7 @@
   }
 </script>
 
-<div class="cart-item">
+<article class="cart-item">
   <div class="item-image">
     <img src={item.image_url} alt={item.name} />
   </div>
@@ -27,28 +29,22 @@
   </div>
 
   <div class="item-controls">
-    <div class="quantity-control">
-      <label for="quantity-{item.id}">Quantity:</label>
-      <input
-        id="quantity-{item.id}"
-        type="number"
-        min="1"
-        max="99"
-        value={item.quantity}
-        oninput={(e) => updateQuantity(e.target.value)}
-      />
-    </div>
+    <QuantityInput
+      id="quantity-{item.id}"
+      value={item.quantity}
+      onchange={updateQuantity}
+    />
 
     <div class="item-subtotal">
       <strong>Subtotal:</strong>
       <span class="subtotal-amount">${(item.price * item.quantity).toFixed(2)}</span>
     </div>
 
-    <button class="remove-btn" onclick={removeFromCart}>
+    <Button variant="danger-outline" size="small" onclick={removeFromCart}>
       🗑️ Remove
-    </button>
+    </Button>
   </div>
-</div>
+</article>
 
 <style>
   .cart-item {
@@ -56,11 +52,11 @@
     grid-template-columns: 120px 1fr auto;
     gap: 1.5rem;
     padding: 1.5rem;
-    background: #FFF8F0;
+    background: var(--bg-primary, #FFF8F0);
     border-radius: 16px;
     box-shadow: 0 2px 8px rgba(139, 69, 19, 0.1);
     align-items: center;
-    border: 2px solid #F4A460;
+    border: 2px solid var(--primary-lighter, #F4A460);
   }
 
   .item-image {
@@ -68,7 +64,7 @@
     height: 120px;
     border-radius: 12px;
     overflow: hidden;
-    background: #FFFACD;
+    background: var(--secondary, #FFFACD);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -83,19 +79,19 @@
 
   .item-details h3 {
     margin: 0 0 0.5rem 0;
-    color: #4A3728;
+    color: var(--text-primary, #4A3728);
     font-size: 1.25rem;
   }
 
   .item-size,
   .item-price {
     margin: 0.25rem 0;
-    color: #8B7355;
+    color: var(--text-secondary, #8B7355);
     font-size: 0.875rem;
   }
 
   .item-price {
-    color: #8B4513;
+    color: var(--primary, #8B4513);
     font-weight: 600;
     font-size: 1rem;
   }
@@ -105,32 +101,6 @@
     flex-direction: column;
     gap: 1rem;
     align-items: flex-end;
-  }
-
-  .quantity-control {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .quantity-control label {
-    font-size: 0.875rem;
-    color: #6B5344;
-  }
-
-  .quantity-control input {
-    width: 70px;
-    padding: 0.5rem;
-    border: 2px solid #D2691E;
-    border-radius: 10px;
-    font-size: 1rem;
-    text-align: center;
-    color: #4A3728;
-  }
-
-  .quantity-control input:focus {
-    outline: none;
-    border-color: #8B4513;
   }
 
   .item-subtotal {
@@ -148,23 +118,7 @@
   .subtotal-amount {
     font-size: 1.25rem;
     font-weight: bold;
-    color: #8B4513;
-  }
-
-  .remove-btn {
-    background: transparent;
-    color: #fc8181;
-    border: 2px solid #fc8181;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .remove-btn:hover {
-    background: #fc8181;
-    color: white;
+    color: var(--primary, #8B4513);
   }
 
   @media (max-width: 768px) {

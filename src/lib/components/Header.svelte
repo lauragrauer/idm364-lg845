@@ -1,14 +1,19 @@
 <!-- src/lib/components/Header.svelte -->
 <script>
   import { cart } from '$lib/stores/cart.svelte.js';
+  
+  let { 
+    logoText = 'RILAKKUMA SHOP',
+    logoIcon = '🧸'
+  } = $props();
 </script>
 
 <header>
   <div class="container">
     <nav>
       <a href="/" class="logo">
-        <span class="logo-icon">🧸</span>
-        <span class="logo-text">RILAKKUMA SHOP</span>
+        <span class="logo-icon">{logoIcon}</span>
+        <span class="logo-text">{logoText}</span>
       </a>
       
       <ul class="nav-links">
@@ -17,7 +22,9 @@
           <a href="/cart" class="cart-link">
             CART
             {#if cart.itemCount > 0}
-              <span class="cart-badge">{cart.itemCount}</span>
+              <span class="cart-badge" aria-label="{cart.itemCount} items in cart">
+                {cart.itemCount}
+              </span>
             {/if}
           </a>
         </li>
@@ -30,7 +37,7 @@
   header {
     background: #614632;
     color: white;
-    padding: 3rem 0.5rem;
+    padding: 1rem 0.5rem;
     box-shadow: 0 2px 10px rgba(139, 69, 19, 0.3);
     position: sticky;
     top: 0;
@@ -91,17 +98,18 @@
   .cart-badge {
     position: absolute;
     top: -8px;
-    right: -8px;
-    background: #FFFACD;
-    color: #8B4513;
+    right: -12px;
+    background: var(--secondary, #FFFACD);
+    color: var(--primary, #8B4513);
     border-radius: 50%;
-    width: 20px;
+    min-width: 20px;
     height: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 0.75rem;
     font-weight: bold;
+    padding: 0 4px;
   }
 
   @media (max-width: 768px) {
