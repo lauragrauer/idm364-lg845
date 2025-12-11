@@ -47,7 +47,7 @@
   }
 
   .footer-note {
-    font-size: 0.9rem;
+    font-size: 1rem;
     opacity: 0.7;
   }
 </style>

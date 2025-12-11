@@ -86,7 +86,7 @@
   .item-price {
     margin: 0.25rem 0;
     color: #8B7355;
-    font-size: 0.875rem;
+    font-size: 1rem;
   }
 
   .item-price {
@@ -110,7 +110,7 @@
   }
 
   .item-subtotal strong {
-    font-size: 0.875rem;
+    font-size: 1rem;
     color: #6B5344;
   }
 

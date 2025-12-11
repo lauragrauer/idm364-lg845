@@ -69,7 +69,7 @@
   }
 
   .quantity-control label {
-    font-size: 0.875rem;
+    font-size: 1rem;
     color: #6B5344;
   }
 
@@ -87,7 +87,7 @@
     height: 36px;
     background: #FFF5EB;
     border: none;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     font-weight: 600;
     color: #8B4513;
     cursor: pointer;
