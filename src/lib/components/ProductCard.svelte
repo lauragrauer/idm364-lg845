@@ -79,12 +79,11 @@
   }
 
   .product-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    padding: 1rem;
-    transition: transform 0.3s;
-  }
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
 
   .product-card:hover .product-image img {
     transform: scale(1.05);
