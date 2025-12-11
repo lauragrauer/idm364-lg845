@@ -1,4 +1,3 @@
-<!-- src/routes/+page.svelte -->
 <script>
   import { supabase } from '$lib/supabaseClient.js';
   import ProductCard from '$lib/components/ProductCard.svelte';
@@ -12,7 +11,6 @@
   let error = $state(null);
   let selected_category = $state('all');
 
-  // $derived should be a simple expression, NOT a function
   const categories = $derived(['all', ...new Set(products.map(p => p.category))]);
   
   const filtered_products = $derived(

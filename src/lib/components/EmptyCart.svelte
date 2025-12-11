@@ -1,4 +1,3 @@
-<!-- src/lib/components/EmptyCart.svelte -->
 <script>
   let { 
     icon = '🧸', 

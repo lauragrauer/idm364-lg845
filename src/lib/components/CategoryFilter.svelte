@@ -1,4 +1,3 @@
-<!-- src/lib/components/CategoryFilter.svelte -->
 <script>
   let { 
     categories = [],

@@ -1,4 +1,3 @@
-<!-- src/routes/product/[id]/+page.svelte -->
 <script>
   import { page } from '$app/stores';
   import { supabase } from '$lib/supabaseClient.js';

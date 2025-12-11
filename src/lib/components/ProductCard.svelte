@@ -1,4 +1,3 @@
-<!-- src/lib/components/ProductCard.svelte -->
 <script>
   import { cart } from '$lib/stores/cart.svelte.js';
   import Button from './Button.svelte';

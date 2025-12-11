@@ -1,4 +1,3 @@
-<!-- src/lib/components/Button.svelte -->
 <script>
   let { 
     variant = 'primary',

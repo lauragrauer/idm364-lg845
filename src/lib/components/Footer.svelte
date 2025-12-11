@@ -1,4 +1,3 @@
-<!-- src/lib/components/Footer.svelte -->
 <script>
   let { 
     icon = '🧸',

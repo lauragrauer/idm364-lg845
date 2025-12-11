@@ -1,4 +1,3 @@
-<!-- src/lib/components/Header.svelte -->
 <script>
   import { cart } from '$lib/stores/cart.svelte.js';
   
