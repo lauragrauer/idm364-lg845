@@ -1,0 +1,55 @@
+
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  /* Rilakkuma Theme Colors */
+  --primary: #8B4513;
+  --primary-light: #D2691E;
+  --primary-lighter: #F4A460;
+  --secondary: #FFFACD;
+  --accent: #FFB6C1;
+  --danger: #fc8181;
+  --text-primary: #4A3728;
+  --text-secondary: #8B7355;
+  --bg-primary: #FFF8F0;
+  --bg-secondary: #FFF5EB;
+  --border: #E8D5C4;
+}
+
+body {
+  margin: 0;
+  font-family: 'Nunito', 'Segoe UI', 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+button {
+  font-family: inherit;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
