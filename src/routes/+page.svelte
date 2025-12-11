@@ -47,7 +47,7 @@
 </script>
 
 <svelte:head>
-  <title>Rilakkuma Shop - Adorable Plushies</title>
+  <title>Rilakkuma Shop - Adorable Plushiess</title>
 </svelte:head>
 
 <Hero />
