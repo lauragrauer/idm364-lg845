@@ -3,38 +3,42 @@
   import { page } from '$app/stores';
   import { supabase } from '$lib/supabaseClient.js';
   import { cart } from '$lib/stores/cart.svelte.js';
+  import LoadingSpinner from '$lib/components/LoadingSpinner.svelte';
+  import ErrorMessage from '$lib/components/ErrorMessage.svelte';
+  import QuantityInput from '$lib/components/QuantityInput.svelte';
+  import Button from '$lib/components/Button.svelte';
 
   let product = $state(null);
   let loading = $state(true);
   let error = $state(null);
   let quantity = $state(1);
 
-  // Fetch product by ID
   $effect(() => {
-    async function fetchProduct() {
-      try {
-        loading = true;
-        const { data, error: fetchError } = await supabase
-          .from('products')
-          .select('*')
-          .eq('id', $page.params.id)
-          .single();
-
-        if (fetchError) throw fetchError;
-        
-        product = data;
-      } catch (err) {
-        error = err.message;
-        console.error('Error fetching product:', err);
-      } finally {
-        loading = false;
-      }
-    }
-
-    fetchProduct();
+    fetch_product();
   });
 
-  function addToCart() {
+  async function fetch_product() {
+    try {
+      loading = true;
+      error = null;
+      
+      const { data, error: fetch_error } = await supabase
+        .from('products')
+        .select('*')
+        .eq('id', $page.params.id)
+        .single();
+
+      if (fetch_error) throw fetch_error;
+      product = data;
+    } catch (err) {
+      error = err.message;
+      console.error('Error fetching product:', err);
+    } finally {
+      loading = false;
+    }
+  }
+
+  function add_to_cart() {
     if (product) {
       cart.addItem(product, quantity);
       alert(`Added ${quantity} ${product.name}(s) to cart! 🧸💕`);
@@ -42,16 +46,8 @@
     }
   }
 
-  function incrementQuantity() {
-    if (product && quantity < product.quantity) {
-      quantity++;
-    }
-  }
-
-  function decrementQuantity() {
-    if (quantity > 1) {
-      quantity--;
-    }
+  function handle_quantity_change(new_quantity) {
+    quantity = new_quantity;
   }
 </script>
 
@@ -63,15 +59,13 @@
 <div class="page">
   <div class="container">
     {#if loading}
-      <div class="loading">
-        <div class="spinner"></div>
-        <p>Loading plushie... 🐻</p>
-      </div>
+      <LoadingSpinner message="Loading plushie... 🐻" />
     {:else if error}
-      <div class="error">
-        <p>Error loading product: {error}</p>
-        <a href="/" class="back-link">← Back to Shop</a>
-      </div>
+      <ErrorMessage 
+        message="Error loading product: {error}" 
+        show_retry={false}
+      />
+      <a href="/" class="back-link">← Back to Shop</a>
     {:else if product}
       <a href="/" class="back-link">← Back to Shop</a>
 
@@ -102,47 +96,32 @@
 
           {#if product.quantity > 0}
             <div class="quantity-selector">
-              <label for="quantity">Quantity:</label>
-              <div class="quantity-controls">
-                <button 
-                  class="qty-btn"
-                  onclick={decrementQuantity}
-                  disabled={quantity <= 1}
-                >
-                  −
-                </button>
-                <input
-                  id="quantity"
-                  type="number"
-                  min="1"
-                  max={product.quantity}
-                  bind:value={quantity}
-                />
-                <button 
-                  class="qty-btn"
-                  onclick={incrementQuantity}
-                  disabled={quantity >= product.quantity}
-                >
-                  +
-                </button>
-              </div>
+              <QuantityInput
+                id="product-quantity"
+                value={quantity}
+                min={1}
+                max={product.quantity}
+                label="Quantity:"
+                onchange={handle_quantity_change}
+              />
             </div>
 
-            <button class="add-to-cart-btn" onclick={addToCart}>
+            <Button variant="success" size="large" full_width={true} onclick={add_to_cart}>
               🛒 Add to Cart - ${(product.price * quantity).toFixed(2)}
-            </button>
+            </Button>
           {:else}
-            <button class="add-to-cart-btn" disabled>
+            <Button variant="secondary" size="large" full_width={true} disabled={true}>
               Out of Stock 😢
-            </button>
+            </Button>
           {/if}
         </div>
       </div>
     {:else}
-      <div class="error">
-        <p>Product not found</p>
-        <a href="/" class="back-link">← Back to Shop</a>
-      </div>
+      <ErrorMessage 
+        message="Product not found" 
+        show_retry={false}
+      />
+      <a href="/" class="back-link">← Back to Shop</a>
     {/if}
   </div>
 </div>
@@ -166,25 +145,6 @@
 
   .back-link:hover {
     transform: translateX(-5px);
-  }
-
-  .loading, .error {
-    text-align: center;
-    padding: 4rem 0;
-  }
-
-  .spinner {
-    width: 50px;
-    height: 50px;
-    border: 4px solid #E8D5C4;
-    border-top-color: #8B4513;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin: 0 auto 1rem;
-  }
-
-  @keyframes spin {
-    to { transform: rotate(360deg); }
   }
 
   .product-detail {
@@ -287,83 +247,6 @@
 
   .quantity-selector {
     margin-bottom: 2rem;
-  }
-
-  .quantity-selector label {
-    display: block;
-    font-weight: 600;
-    color: #4A3728;
-    margin-bottom: 0.5rem;
-  }
-
-  .quantity-controls {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .qty-btn {
-    width: 45px;
-    height: 45px;
-    border: 2px solid #D2691E;
-    background: white;
-    border-radius: 50%;
-    font-size: 1.5rem;
-    cursor: pointer;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #8B4513;
-  }
-
-  .qty-btn:hover:not(:disabled) {
-    background: #FFFACD;
-    border-color: #8B4513;
-  }
-
-  .qty-btn:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-  }
-
-  .quantity-controls input {
-    width: 80px;
-    height: 45px;
-    text-align: center;
-    border: 2px solid #D2691E;
-    border-radius: 10px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #4A3728;
-  }
-
-  .quantity-controls input:focus {
-    outline: none;
-    border-color: #8B4513;
-  }
-
-  .add-to-cart-btn {
-    width: 100%;
-    padding: 1.25rem;
-    background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
-    color: white;
-    border: none;
-    border-radius: 30px;
-    font-size: 1.2rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-
-  .add-to-cart-btn:hover:not(:disabled) {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(139, 69, 19, 0.4);
-  }
-
-  .add-to-cart-btn:disabled {
-    background: #cbd5e0;
-    cursor: not-allowed;
   }
 
   @media (max-width: 768px) {
