@@ -1,3 +1,4 @@
+<!-- src/lib/components/QuantityInput.svelte -->
 <script>
   let { 
     id = '',
@@ -6,14 +7,8 @@
     max = 99,
     label = 'Quantity:',
     show_label = true,
-    onchange
+    onchange = () => {}
   } = $props();
-
-  function handle_input(event) {
-    const new_value = parseInt(event.target.value) || min;
-    const clamped_value = Math.max(min, Math.min(max, new_value));
-    onchange(clamped_value);
-  }
 
   function increment() {
     if (value < max) {
@@ -41,7 +36,7 @@
       disabled={value <= min}
       aria-label="Decrease quantity"
     >
-      −
+      -
     </button>
     
     <input
@@ -50,8 +45,8 @@
       {min}
       {max}
       {value}
-      oninput={handle_input}
-      aria-label={!show_label ? label : undefined}
+      readonly
+      aria-label={label}
     />
     
     <button 
@@ -122,16 +117,12 @@
     text-align: center;
     color: #4A3728;
     background: white;
+    cursor: default;
   }
 
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
-  }
-
-  input:focus {
-    outline: none;
-    background: #FFFACD;
   }
 </style>
