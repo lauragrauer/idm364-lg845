@@ -123,7 +123,6 @@
     text-align: center;
     color: #4A3728;
     background: white;
-    -moz-appearance: textfield;
   }
 
   input::-webkit-outer-spin-button,

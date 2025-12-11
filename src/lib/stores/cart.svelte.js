@@ -1,12 +1,3 @@
-// src/lib/stores/cart.svelte.js
-
-/**
- * Shopping Cart Store
- * Uses Svelte 5 runes for reactive state management
- * Persists cart data to localStorage
- */
-
-// Initialize cart from localStorage if available
 function getInitialCart() {
   if (typeof window !== 'undefined') {
     const stored = localStorage.getItem('shopping_cart');
@@ -24,7 +15,6 @@ function getInitialCart() {
 class CartStore {
   items = $state(getInitialCart());
 
-  // Computed properties using $derived
   get total() {
     return this.items.reduce((sum, item) => sum + item.price * item.quantity, 0);
   }
@@ -33,7 +23,6 @@ class CartStore {
     return this.items.reduce((sum, item) => sum + item.quantity, 0);
   }
 
-  // Add item to cart
   addItem(product, quantity = 1) {
     const existingItem = this.items.find(item => item.id === product.id);
     
@@ -53,7 +42,6 @@ class CartStore {
     this.saveToLocalStorage();
   }
 
-  // Update item quantity
   updateQuantity(productId, quantity) {
     const item = this.items.find(item => item.id === productId);
     if (item) {
@@ -66,19 +54,17 @@ class CartStore {
     }
   }
 
-  // Remove item from cart
   removeItem(productId) {
     this.items = this.items.filter(item => item.id !== productId);
     this.saveToLocalStorage();
   }
 
-  // Clear entire cart
+
   clearCart() {
     this.items = [];
     this.saveToLocalStorage();
   }
 
-  // Save to localStorage
   saveToLocalStorage() {
     if (typeof window !== 'undefined') {
       localStorage.setItem('shopping_cart', JSON.stringify(this.items));
@@ -86,5 +72,4 @@ class CartStore {
   }
 }
 
-// Export singleton instance
 export const cart = new CartStore();
