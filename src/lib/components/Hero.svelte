@@ -3,7 +3,7 @@
 
 <section class="hero">
   <img src="/images/icon.png" alt="Rilakkuma" class="hero-icon" />
-  <h1>Welcome to Rilakkuma Shopp</h1>
+  <h1>Welcome to Rilakkuma Shop!</h1>
   <p>Find your new cuddly friend from our collection of adorable plushies!</p>
 </section>
 
@@ -42,8 +42,8 @@
     }
 
     .hero-icon {
-      width: var(--icon-lg);
-      height: var(--icon-lg);
-    }
+  width: 6rem;
+  height: 6rem;
+}
   }
 </style>

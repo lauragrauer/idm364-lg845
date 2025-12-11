@@ -52,9 +52,9 @@
   }
 
   .logo-icon {
-    width: var(--icon-md);
-    height: var(--icon-md);
-  }
+  width: 2.5rem;
+  height: 2.5rem;
+}
 
   .nav-links {
     display: flex;
