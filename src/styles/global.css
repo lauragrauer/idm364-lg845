@@ -1,0 +1,55 @@
+/* src/styles/global.css */
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  /* Rilakkuma Theme Colors */
+  --primary: #8B4513;           /* Saddle Brown - Rilakkuma's color */
+  --primary-light: #D2691E;     /* Chocolate */
+  --primary-lighter: #F4A460;   /* Sandy Brown */
+  --secondary: #FFFACD;         /* Lemon Chiffon - Kiiroitori yellow */
+  --accent: #FFB6C1;            /* Light Pink - Korilakkuma */
+  --danger: #fc8181;
+  --text-primary: #4A3728;      /* Dark brown text */
+  --text-secondary: #8B7355;    /* Medium brown text */
+  --bg-primary: #FFF8F0;        /* Warm white background */
+  --bg-secondary: #FFF5EB;      /* Cream background */
+  --border: #E8D5C4;            /* Light brown border */
+}
+
+body {
+  margin: 0;
+  font-family: 'Nunito', 'Segoe UI', 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+button {
+  font-family: inherit;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
