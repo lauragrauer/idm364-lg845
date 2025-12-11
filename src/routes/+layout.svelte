@@ -14,7 +14,7 @@
   <footer>
     <div class="container">
       <div class="footer-content">
-<img class="footer-bear" src="/images/cow-rilakkuma.jpg" alt="Rilakkuma" />
+<img class="footer-bear" src="/images/icon-bear.webp" alt="Rilakkuma" />
         <p>&copy; 2024 Rilakkuma Shop. Made with 💕</p>
         <p class="footer-note">All plushies are looking for a loving home!</p>
       </div>
