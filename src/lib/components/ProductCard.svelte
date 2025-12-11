@@ -153,7 +153,7 @@
   }
 
   .add-to-cart-btn {
-    background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
+    background: #614632;
     color: white;
     border: none;
     padding: 0.75rem 1.5rem;

@@ -28,9 +28,9 @@
 
 <style>
   header {
-    background: linear-gradient(135deg, #8B4513 0%, #D2691E 50%, #F4A460 100%);
+    background: #614632;
     color: white;
-    padding: 1rem 0;
+    padding: 1rem 0.5rem;
     box-shadow: 0 2px 10px rgba(139, 69, 19, 0.3);
     position: sticky;
     top: 0;
