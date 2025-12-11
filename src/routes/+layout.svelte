@@ -36,7 +36,7 @@
   }
 
   footer {
-    background: linear-gradient(135deg, #8B4513 0%, #D2691E 50%, #F4A460 100%);
+    background: #D2691E;
     color: white;
     padding: 2rem 0;
     text-align: center;
@@ -62,11 +62,10 @@
 
   footer p {
     margin: 0;
-    opacity: 0.9;
   }
 
   .footer-note {
-    font-size: 0.875rem;
+    font-size: 0.9rem;
     opacity: 0.7;
   }
 </style>
