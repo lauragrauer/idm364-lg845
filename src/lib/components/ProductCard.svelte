@@ -188,8 +188,18 @@ h3 {
     }
 
     .add-to-cart-btn {
-      padding: 0.6rem 1rem;
-      font-size: 0.875rem;
+    width: 100%;
+    padding: 1.25rem;
+    margin-top: 1.5rem;
+    background: #48bb78;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
     }
+
   }
 </style>
