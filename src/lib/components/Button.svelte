@@ -25,13 +25,13 @@
   .btn {
     font-family: inherit;
     font-weight: 600;
-    border-radius: var(--radius-full);
+    border-radius: 25px;
     cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: var(--spacing-sm);
+    gap: 0.5rem;
   }
 
   .btn:disabled {
@@ -41,47 +41,45 @@
 
   /* Sizes */
   .btn-small {
-    padding: var(--spacing-sm) var(--spacing-md);
-    font-size: var(--font-size-sm);
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
   }
 
   .btn-medium {
-    padding: var(--spacing-md) var(--spacing-lg);
-    font-size: var(--font-size-md);
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
   }
 
   .btn-large {
-    padding: var(--spacing-lg) var(--spacing-xl);
-    font-size: var(--font-size-lg);
+    padding: 1.25rem 2rem;
+    font-size: 1.1rem;
   }
 
   /* Variants */
-  .btn-primary,
-  .btn-success {
-    background: var(--color-success);
+  .btn-primary {
+    background: #48bb78;
     color: white;
     border: none;
   }
 
-  .btn-primary:hover:not(:disabled),
-  .btn-success:hover:not(:disabled) {
+  .btn-primary:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 8px 20px rgba(139, 69, 19, 0.4);
   }
 
   .btn-secondary {
-    background: var(--color-header);
+    background: #614632;
     color: white;
     border: none;
   }
 
   .btn-secondary:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 8px 20px rgba(139, 69, 19, 0.4);
   }
 
   .btn-danger {
-    background: var(--color-danger);
+    background: #fc8181;
     color: white;
     border: none;
   }
@@ -93,13 +91,24 @@
 
   .btn-danger-outline {
     background: transparent;
-    color: var(--color-danger);
-    border: 2px solid var(--color-danger);
+    color: #fc8181;
+    border: 2px solid #fc8181;
   }
 
   .btn-danger-outline:hover:not(:disabled) {
-    background: var(--color-danger);
+    background: #fc8181;
     color: white;
+  }
+
+  .btn-success {
+    background: #48bb78;
+    color: white;
+    border: none;
+  }
+
+  .btn-success:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(72, 187, 120, 0.4);
   }
 
   .full-width {

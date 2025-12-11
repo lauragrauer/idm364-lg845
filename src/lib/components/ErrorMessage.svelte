@@ -1,24 +1,42 @@
 <!-- src/lib/components/ErrorMessage.svelte -->
 <script>
-  let { message = 'Something went wrong' } = $props();
+  import Button from './Button.svelte';
+
+  let { 
+    message = 'Something went wrong',
+    show_retry = true,
+    retry_text = 'Try Again',
+    on_retry = () => window.location.reload()
+  } = $props();
 </script>
 
 <div class="error">
-  <p>{message}</p>
+  <div class="error-icon">😿</div>
+  <p class="error-message">{message}</p>
+  {#if show_retry}
+    <Button variant="danger" onclick={on_retry}>
+      {retry_text}
+    </Button>
+  {/if}
 </div>
 
 <style>
   .error {
     text-align: center;
-    padding: var(--spacing-xl);
-    background: #FFF0F0;
-    border: 2px solid var(--color-danger);
-    border-radius: var(--radius-md);
+    padding: 4rem 2rem;
+    background: #FFF8F0;
+    border-radius: 20px;
+    border: 3px dashed #fc8181;
   }
 
-  p {
-    color: var(--color-danger);
-    font-size: var(--font-size-lg);
-    font-weight: 600;
+  .error-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+
+  .error-message {
+    color: #fc8181;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
   }
 </style>

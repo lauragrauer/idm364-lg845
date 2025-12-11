@@ -1,14 +1,19 @@
 <!-- src/lib/components/Header.svelte -->
 <script>
   import { cart } from '$lib/stores/cart.svelte.js';
+  
+  let { 
+    logo_text = 'RILAKKUMA SHOP',
+    logo_icon = '🧸'
+  } = $props();
 </script>
 
 <header>
   <div class="container">
     <nav>
       <a href="/" class="logo">
-        <img src="/images/icon.png" alt="Rilakkuma" class="logo-icon" />
-        <span class="logo-text">RILAKKUMA SHOP</span>
+        <span class="logo-icon">{logo_icon}</span>
+        <span class="logo-text">{logo_text}</span>
       </a>
       
       <ul class="nav-links">
@@ -17,7 +22,9 @@
           <a href="/cart" class="cart-link">
             CART
             {#if cart.itemCount > 0}
-              <span class="cart-badge">{cart.itemCount}</span>
+              <span class="cart-badge" aria-label="{cart.itemCount} items in cart">
+                {cart.itemCount}
+              </span>
             {/if}
           </a>
         </li>
@@ -28,13 +35,19 @@
 
 <style>
   header {
-    background: var(--color-header);
+    background: #614632;
     color: white;
-    padding: var(--spacing-md) var(--spacing-sm);
-    box-shadow: var(--shadow-md);
+    padding: 1rem 0.5rem;
+    box-shadow: 0 2px 10px rgba(139, 69, 19, 0.3);
     position: sticky;
     top: 0;
     z-index: 100;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
   }
 
   nav {
@@ -46,30 +59,31 @@
   .logo {
     display: flex;
     align-items: center;
-    gap: var(--spacing-sm);
+    gap: 0.5rem;
+    text-decoration: none;
     color: white;
-    font-size: var(--font-size-xl);
+    font-size: 1.5rem;
     font-weight: bold;
   }
 
   .logo-icon {
-    width: var(--icon-md);
-    height: var(--icon-md);
+    font-size: 2rem;
   }
 
   .nav-links {
     display: flex;
-    gap: var(--spacing-xl);
+    gap: 2rem;
     list-style: none;
     margin: 0;
     padding: 0;
-    font-size: var(--font-size-md);
   }
 
   .nav-links a {
     color: white;
-    font-weight: 600;
+    text-decoration: none;
+    font-weight: 500;
     transition: opacity 0.3s;
+    position: relative;
   }
 
   .nav-links a:hover {
@@ -78,23 +92,24 @@
 
   .cart-link {
     position: relative;
-    padding-right: var(--spacing-sm);
+    padding-right: 0.5rem;
   }
 
   .cart-badge {
     position: absolute;
     top: -8px;
     right: -12px;
-    background: var(--color-bg-highlight);
-    color: var(--color-primary);
+    background: #FFFACD;
+    color: #8B4513;
     border-radius: 50%;
-    min-width: 22px;
-    height: 22px;
+    min-width: 20px;
+    height: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: var(--font-size-sm);
+    font-size: 0.75rem;
     font-weight: bold;
+    padding: 0 4px;
   }
 
   @media (max-width: 768px) {
@@ -103,7 +118,7 @@
     }
 
     .nav-links {
-      gap: var(--spacing-md);
+      gap: 1rem;
     }
   }
 </style>

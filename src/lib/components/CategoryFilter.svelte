@@ -3,58 +3,79 @@
   let { 
     categories = [],
     selected = 'all',
-    onselect = () => {}
+    onchange,
+    label = 'Filter by category:',
+    all_label = 'All Items'
   } = $props();
+
+  function handle_change(event) {
+    onchange(event.target.value);
+  }
 </script>
 
-<div class="filter-container">
-  <button 
-    class="filter-btn" 
-    class:active={selected === 'all'}
-    onclick={() => onselect('all')}
+<div class="filter-section">
+  <label for="category-filter">{label}</label>
+  <select 
+    id="category-filter"
+    value={selected}
+    onchange={handle_change}
   >
-    All
-  </button>
-  {#each categories as category}
-    <button 
-      class="filter-btn"
-      class:active={selected === category}
-      onclick={() => onselect(category)}
-    >
-      {category}
-    </button>
-  {/each}
+    {#each categories as category}
+      <option value={category}>
+        {category === 'all' ? all_label : category}
+      </option>
+    {/each}
+  </select>
 </div>
 
 <style>
-  .filter-container {
+  .filter-section {
     display: flex;
-    gap: var(--spacing-sm);
-    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
     justify-content: center;
-    margin-bottom: var(--spacing-xl);
+    background: #FFF8F0;
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    border: 2px solid #F4A460;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  .filter-btn {
-    padding: var(--spacing-sm) var(--spacing-lg);
-    border: 2px solid var(--color-primary-lighter);
-    background: var(--color-bg-card);
-    color: var(--color-text);
-    border-radius: var(--radius-full);
-    cursor: pointer;
-    font-size: var(--font-size-md);
+  label {
     font-weight: 600;
-    transition: all 0.2s;
+    color: #4A3728;
   }
 
-  .filter-btn:hover {
-    background: var(--color-primary-lighter);
-    color: white;
+  select {
+    padding: 0.75rem 1rem;
+    border: 2px solid #D2691E;
+    border-radius: 20px;
+    font-size: 1rem;
+    background: white;
+    cursor: pointer;
+    min-width: 200px;
+    color: #4A3728;
+    font-family: inherit;
   }
 
-  .filter-btn.active {
-    background: var(--color-primary);
-    border-color: var(--color-primary);
-    color: white;
+  select:focus {
+    outline: none;
+    border-color: #8B4513;
+  }
+
+  @media (max-width: 768px) {
+    .filter-section {
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+      margin: 0 0 2rem 0;
+    }
+
+    select {
+      width: 100%;
+    }
   }
 </style>

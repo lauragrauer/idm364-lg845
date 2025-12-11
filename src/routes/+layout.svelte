@@ -20,11 +20,11 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background: var(--color-bg);
+    background: #FFF5EB;
   }
 
   main {
     flex: 1;
-    padding: var(--spacing-xl) 0;
+    padding: 2rem 0;
   }
 </style>

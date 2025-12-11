@@ -1,43 +1,54 @@
 <!-- src/lib/components/Footer.svelte -->
 <script>
+  let { 
+    icon = '🧸',
+    text = '© 2025 Rilakkuma Shop 💕💕💕💕',
+    note = 'Please give these guys a home!'
+  } = $props();
 </script>
 
 <footer>
   <div class="container">
     <div class="footer-content">
-      <img src="/images/icon.png" alt="Rilakkuma" class="footer-icon" />
-      <p>© 2025 Rilakkuma Shop</p>
-      <p class="footer-note">Please give these guys a home!</p>
+      <span class="footer-bear">{icon}</span>
+      <p>{text}</p>
+      <p class="footer-note">{note}</p>
     </div>
   </div>
 </footer>
 
 <style>
   footer {
-    background: var(--color-header);
+    background: #614632;
     color: white;
-    padding: var(--spacing-xl) var(--spacing-md);
+    padding: 2rem 1rem;
     text-align: center;
-    margin-top: var(--spacing-xl);
+    margin-top: 4rem;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
   }
 
   .footer-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--spacing-sm);
+    gap: 0.5rem;
   }
 
-  .footer-icon {
-    width: var(--icon-md);
-    height: var(--icon-md);
+  .footer-bear {
+    font-size: 2rem;
   }
 
   footer p {
-    font-size: var(--font-size-md);
+    margin: 0;
   }
 
   .footer-note {
+    font-size: 0.9rem;
     opacity: 0.7;
   }
 </style>
