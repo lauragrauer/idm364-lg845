@@ -99,14 +99,14 @@
 
   h3 {
     margin: 0 0 0.5rem 0;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     color: #4A3728;
     font-weight: 800;
   }
 
   .product-category {
     color: #8B4513;
-    font-size: 0.875rem;
+    font-size: 1rem;
     font-weight: 600;
     margin: 0 0 0.5rem 0;
     text-transform: uppercase;
@@ -129,7 +129,7 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    font-size: 0.875rem;
+    font-size: 1rem;
     color: #6B5344;
   }
 
