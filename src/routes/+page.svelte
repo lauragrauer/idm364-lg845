@@ -223,6 +223,13 @@
     font-size: 1.25rem;
   }
 
+.footer-bear {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
   @media (max-width: 768px) {
     .hero h1 {
       font-size: 2rem;
