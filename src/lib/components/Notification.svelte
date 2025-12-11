@@ -1,4 +1,3 @@
-<!-- src/lib/components/Notification.svelte -->
 <script>
   let { 
     message = '',

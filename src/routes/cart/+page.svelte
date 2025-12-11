@@ -1,4 +1,3 @@
-<!-- src/routes/cart/+page.svelte -->
 <script>
   import { cart } from '$lib/stores/cart.svelte.js';
   import EmptyCart from '$lib/components/EmptyCart.svelte';

@@ -1,4 +1,3 @@
-<!-- src/lib/components/ErrorMessage.svelte -->
 <script>
   let { message = 'Something went wrong' } = $props();
 </script>

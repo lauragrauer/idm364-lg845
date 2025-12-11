@@ -1,4 +1,3 @@
-<!-- src/routes/+page.svelte -->
 <script>
   import { supabase } from '$lib/supabaseClient.js';
   import Hero from '$lib/components/Hero.svelte';

@@ -1,4 +1,3 @@
-<!-- src/lib/components/CartItem.svelte -->
 <script>
   import { cart } from '$lib/stores/cart.svelte.js';
   import QuantityInput from './QuantityInput.svelte';

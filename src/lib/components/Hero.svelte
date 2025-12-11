@@ -1,4 +1,3 @@
-<!-- src/lib/components/Hero.svelte -->
 <script>
 </script>
 

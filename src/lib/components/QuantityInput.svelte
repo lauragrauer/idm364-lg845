@@ -1,4 +1,3 @@
-<!-- src/lib/components/QuantityInput.svelte -->
 <script>
   let { 
     value = 1,
