@@ -1,4 +1,3 @@
-<!-- src/routes/+page.svelte -->
 <script>
   import { onMount } from 'svelte';
   import { supabase } from '$lib/supabaseClient.js';
@@ -9,7 +8,6 @@
   let error = $state(null);
   let selectedCategory = $state('all');
 
-  // Fetch products from Supabase
   $effect(() => {
     async function fetchProducts() {
       try {
@@ -33,13 +31,11 @@
     fetchProducts();
   });
 
-  // Get unique categories
   const categories = $derived(() => {
     const cats = [...new Set(products.map(p => p.category))];
     return ['all', ...cats];
   });
 
-  // Filter products by category
   const filteredProducts = $derived(() => {
     if (selectedCategory === 'all') {
       return products;
