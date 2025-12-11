@@ -184,6 +184,7 @@ h3 {
 
     h3 {
       font-size: 1.1rem;
+      font-weight: 1000;
     }
 
     .add-to-cart-btn {
