@@ -10,14 +10,16 @@
   let show_notification = $state(false);
   let notification_message = $state('');
 
+  let item_total = $derived(item.price * item.quantity);
+
   function update_quantity(new_quantity) {
     cart.updateQuantity(item.id, new_quantity);
   }
 
-  function remove_from_cart() {
+  function remove_item() {
     const item_name = item.name;
     cart.removeItem(item.id);
-    notification_message = `${item_name} removed from cart 🗑️`;
+    notification_message = `${item_name} removed from cart`;
     show_notification = true;
   }
 
@@ -26,120 +28,91 @@
   }
 </script>
 
-<article class="cart-item">
-  <div class="item-image">
-    <img src={item.image_url} alt={item.name} />
-  </div>
-
-  <div class="item-details">
-    <h3>{item.name}</h3>
-    <p class="item-size">Size: {item.size}</p>
-    <p class="item-price">${item.price.toFixed(2)} each</p>
-  </div>
-
-  <div class="item-controls">
-    <QuantityInput
-      id="quantity-{item.id}"
-      value={item.quantity}
-      onchange={update_quantity}
-    />
-
-    <div class="item-subtotal">
-      <strong>Subtotal:</strong>
-      <span class="subtotal-amount">${(item.price * item.quantity).toFixed(2)}</span>
-    </div>
-
-    <Button variant="danger-outline" size="small" onclick={remove_from_cart}>
-      🗑️ Remove
-    </Button>
-  </div>
-</article>
-
 <Notification 
   message={notification_message} 
   visible={show_notification} 
   onclose={close_notification} 
 />
 
+<div class="cart-item">
+  <img src={item.image} alt={item.name} class="item-image" />
+  
+  <div class="item-details">
+    <h3>{item.name}</h3>
+    <p class="item-price">${item.price.toFixed(2)} each</p>
+  </div>
+
+  <div class="item-quantity">
+    <QuantityInput 
+      value={item.quantity}
+      min={1}
+      max={10}
+      label="Item quantity"
+      onchange={update_quantity}
+    />
+  </div>
+
+  <div class="item-total">
+    <span class="total-label">Total:</span>
+    <span class="total-amount">${item_total.toFixed(2)}</span>
+  </div>
+
+  <Button variant="danger-outline" size="small" onclick={remove_item}>
+    Remove
+  </Button>
+</div>
+
 <style>
   .cart-item {
-    display: grid;
-    grid-template-columns: 120px 1fr auto;
-    gap: 1.5rem;
-    padding: 1.5rem;
-    background: #FFF8F0;
-    border-radius: 16px;
-    box-shadow: 0 2px 8px rgba(139, 69, 19, 0.1);
+    display: flex;
     align-items: center;
-    border: 2px solid #F4A460;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    background: var(--color-bg-card);
+    border-radius: var(--radius-lg);
+    border: 2px solid var(--color-primary-lighter);
   }
 
   .item-image {
-    width: 120px;
-    height: 120px;
-    border-radius: 12px;
-    overflow: hidden;
-    background: #FFFACD;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: var(--radius-md);
   }
 
-  .item-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    padding: 0.5rem;
+  .item-details {
+    flex: 1;
   }
 
   .item-details h3 {
-    margin: 0 0 0.5rem 0;
-    color: #4A3728;
-    font-size: 1.25rem;
-  }
-
-  .item-size,
-  .item-price {
-    margin: 0.25rem 0;
-    color: #8B7355;
-    font-size: 0.875rem;
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-xs);
   }
 
   .item-price {
-    color: #8B4513;
-    font-weight: 600;
-    font-size: 1rem;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-md);
   }
 
-  .item-controls {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: flex-end;
+  .item-total {
+    text-align: right;
   }
 
-  .item-subtotal {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 0.25rem;
+  .total-label {
+    display: block;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
   }
 
-  .item-subtotal strong {
-    font-size: 0.875rem;
-    color: #6B5344;
-  }
-
-  .subtotal-amount {
-    font-size: 1.25rem;
+  .total-amount {
+    font-size: var(--font-size-xl);
     font-weight: bold;
-    color: #8B4513;
+    color: var(--color-primary);
   }
 
   @media (max-width: 768px) {
     .cart-item {
-      grid-template-columns: 80px 1fr;
-      gap: 1rem;
+      flex-wrap: wrap;
     }
 
     .item-image {
@@ -147,15 +120,13 @@
       height: 80px;
     }
 
-    .item-controls {
-      grid-column: 1 / -1;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
+    .item-details {
+      flex: 1 1 calc(100% - 100px);
     }
 
-    .item-subtotal {
-      align-items: center;
+    .item-quantity,
+    .item-total {
+      flex: 1;
     }
   }
 </style>
