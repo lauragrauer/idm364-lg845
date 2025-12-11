@@ -1,3 +1,4 @@
+<!-- src/routes/cart/+page.svelte -->
 <script>
   import { cart } from '$lib/stores/cart.svelte.js';
   import CartItem from '$lib/components/CartItem.svelte';

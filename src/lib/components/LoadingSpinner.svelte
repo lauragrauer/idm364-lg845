@@ -1,3 +1,4 @@
+<!-- src/lib/components/LoadingSpinner.svelte -->
 <script>
   let { 
     message = 'Loading...',

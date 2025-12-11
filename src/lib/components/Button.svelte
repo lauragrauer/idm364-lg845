@@ -1,3 +1,4 @@
+<!-- src/lib/components/Button.svelte -->
 <script>
   let { 
     variant = 'primary',
@@ -41,17 +42,17 @@
   /* Sizes */
   .btn-small {
     padding: 0.5rem 1rem;
-    font-size: 1rem;
+    font-size: 0.875rem;
   }
 
   .btn-medium {
     padding: 0.75rem 1.5rem;
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
 
   .btn-large {
     padding: 1.25rem 2rem;
-    font-size: 1.5rem;
+    font-size: 1.1rem;
   }
 
   /* Variants */

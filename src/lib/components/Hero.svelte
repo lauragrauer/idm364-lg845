@@ -1,3 +1,4 @@
+<!-- src/lib/components/Hero.svelte -->
 <script>
   let { 
     icon = '🧸',

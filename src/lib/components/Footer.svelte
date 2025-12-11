@@ -1,3 +1,4 @@
+<!-- src/lib/components/Footer.svelte -->
 <script>
   let { 
     icon = '🧸',
@@ -47,7 +48,7 @@
   }
 
   .footer-note {
-    font-size: 1rem;
+    font-size: 0.9rem;
     opacity: 0.7;
   }
 </style>

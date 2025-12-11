@@ -1,3 +1,4 @@
+<!-- src/lib/components/Header.svelte -->
 <script>
   import { cart } from '$lib/stores/cart.svelte.js';
   
@@ -106,7 +107,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1rem;
+    font-size: 0.75rem;
     font-weight: bold;
     padding: 0 4px;
   }

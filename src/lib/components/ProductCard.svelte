@@ -1,12 +1,22 @@
+<!-- src/lib/components/ProductCard.svelte -->
 <script>
   import { cart } from '$lib/stores/cart.svelte.js';
   import Button from './Button.svelte';
+  import Notification from './Notification.svelte';
 
   let { product } = $props();
 
+  let show_notification = $state(false);
+  let notification_message = $state('');
+
   function add_to_cart() {
     cart.addItem(product);
-    alert(`${product.name} added to cart! 🧸`);
+    notification_message = `${product.name} added to cart! 🧸`;
+    show_notification = true;
+  }
+
+  function close_notification() {
+    show_notification = false;
   }
 </script>
 
@@ -41,6 +51,12 @@
     </Button>
   </div>
 </article>
+
+<Notification 
+  message={notification_message} 
+  visible={show_notification} 
+  onclose={close_notification} 
+/>
 
 <style>
   .product-card {
@@ -98,14 +114,14 @@
 
   h3 {
     margin: 0 0 0.5rem 0;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     color: #4A3728;
     font-weight: 800;
   }
 
   .product-category {
     color: #8B4513;
-    font-size: 1rem;
+    font-size: 0.875rem;
     font-weight: 600;
     margin: 0 0 0.5rem 0;
     text-transform: uppercase;
@@ -118,7 +134,7 @@
 
   .product-description {
     color: #8B7355;
-    font-size: 1rem;
+    font-size: 0.875rem;
     margin: 0 0 1rem 0;
     flex: 1;
     line-height: 1.5;
@@ -128,7 +144,7 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    font-size: 1rem;
+    font-size: 0.875rem;
     color: #6B5344;
   }
 

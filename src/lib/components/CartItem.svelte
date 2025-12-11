@@ -1,18 +1,28 @@
+<!-- src/lib/components/CartItem.svelte -->
 <script>
   import { cart } from '$lib/stores/cart.svelte.js';
   import QuantityInput from './QuantityInput.svelte';
   import Button from './Button.svelte';
+  import Notification from './Notification.svelte';
 
   let { item } = $props();
+
+  let show_notification = $state(false);
+  let notification_message = $state('');
 
   function update_quantity(new_quantity) {
     cart.updateQuantity(item.id, new_quantity);
   }
 
   function remove_from_cart() {
-    if (confirm(`Remove ${item.name} from cart? 🥺`)) {
-      cart.removeItem(item.id);
-    }
+    const item_name = item.name;
+    cart.removeItem(item.id);
+    notification_message = `${item_name} removed from cart 🗑️`;
+    show_notification = true;
+  }
+
+  function close_notification() {
+    show_notification = false;
   }
 </script>
 
@@ -44,6 +54,12 @@
     </Button>
   </div>
 </article>
+
+<Notification 
+  message={notification_message} 
+  visible={show_notification} 
+  onclose={close_notification} 
+/>
 
 <style>
   .cart-item {
@@ -86,7 +102,7 @@
   .item-price {
     margin: 0.25rem 0;
     color: #8B7355;
-    font-size: 1rem;
+    font-size: 0.875rem;
   }
 
   .item-price {
@@ -110,7 +126,7 @@
   }
 
   .item-subtotal strong {
-    font-size: 1rem;
+    font-size: 0.875rem;
     color: #6B5344;
   }
 

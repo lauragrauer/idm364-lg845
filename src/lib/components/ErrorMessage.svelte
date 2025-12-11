@@ -1,3 +1,4 @@
+<!-- src/lib/components/ErrorMessage.svelte -->
 <script>
   import Button from './Button.svelte';
 

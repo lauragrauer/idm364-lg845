@@ -1,3 +1,4 @@
+<!-- src/routes/product/[id]/+page.svelte -->
 <script>
   import { page } from '$app/stores';
   import { supabase } from '$lib/supabaseClient.js';
@@ -6,11 +7,14 @@
   import ErrorMessage from '$lib/components/ErrorMessage.svelte';
   import QuantityInput from '$lib/components/QuantityInput.svelte';
   import Button from '$lib/components/Button.svelte';
+  import Notification from '$lib/components/Notification.svelte';
 
   let product = $state(null);
   let loading = $state(true);
   let error = $state(null);
   let quantity = $state(1);
+  let show_notification = $state(false);
+  let notification_message = $state('');
 
   $effect(() => {
     fetch_product();
@@ -40,9 +44,14 @@
   function add_to_cart() {
     if (product) {
       cart.addItem(product, quantity);
-      alert(`Added ${quantity} ${product.name}(s) to cart! 🧸💕`);
+      notification_message = `Added ${quantity} ${product.name}(s) to cart! 🧸💕`;
+      show_notification = true;
       quantity = 1;
     }
+  }
+
+  function close_notification() {
+    show_notification = false;
   }
 
   function handle_quantity_change(new_quantity) {
@@ -124,6 +133,12 @@
     {/if}
   </div>
 </div>
+
+<Notification 
+  message={notification_message} 
+  visible={show_notification} 
+  onclose={close_notification} 
+/>
 
 <style>
   .page {

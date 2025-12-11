@@ -1,18 +1,27 @@
+<!-- src/lib/components/CartSummary.svelte -->
 <script>
   import { cart } from '$lib/stores/cart.svelte.js';
   import Button from './Button.svelte';
+  import Notification from './Notification.svelte';
 
   let { on_checkout, on_clear_cart } = $props();
 
+  let show_notification = $state(false);
+  let notification_message = $state('');
+
   function handle_clear_cart() {
-    if (confirm('Clear all items from cart?')) {
-      cart.clearCart();
-      if (on_clear_cart) on_clear_cart();
-    }
+    cart.clearCart();
+    notification_message = 'Cart cleared! 🗑️';
+    show_notification = true;
+    if (on_clear_cart) on_clear_cart();
   }
 
   function handle_checkout() {
     if (on_checkout) on_checkout();
+  }
+
+  function close_notification() {
+    show_notification = false;
   }
 </script>
 
@@ -44,6 +53,12 @@
     🗑️ Clear Cart
   </Button>
 </aside>
+
+<Notification 
+  message={notification_message} 
+  visible={show_notification} 
+  onclose={close_notification} 
+/>
 
 <style>
   .cart-summary {
