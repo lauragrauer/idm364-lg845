@@ -30,7 +30,7 @@
   header {
     background: #614632;
     color: white;
-    padding: 2rem 0.5rem;
+    padding: 3rem 0.5rem;
     box-shadow: 0 2px 10px rgba(139, 69, 19, 0.3);
     position: sticky;
     top: 0;
