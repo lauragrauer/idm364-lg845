@@ -8,14 +8,14 @@
     <nav>
       <a href="/" class="logo">
         <span class="logo-icon">🧸</span>
-        <span class="logo-text">Rilakkuma Shop</span>
+        <span class="logo-text">RILAKKUMA SHOP</span>
       </a>
       
       <ul class="nav-links">
-        <li><a href="/">Shop</a></li>
+        <li><a href="/">SHOP</a></li>
         <li>
           <a href="/cart" class="cart-link">
-            Cart
+            CART
             {#if cart.itemCount > 0}
               <span class="cart-badge">{cart.itemCount}</span>
             {/if}
@@ -30,7 +30,7 @@
   header {
     background: #614632;
     color: white;
-    padding: 1rem 1rem;
+    padding: 2rem 0.5rem;
     box-shadow: 0 2px 10px rgba(139, 69, 19, 0.3);
     position: sticky;
     top: 0;
