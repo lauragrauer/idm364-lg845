@@ -119,7 +119,7 @@
 
   .product-description {
     color: #8B7355;
-    font-size: 0.875rem;
+    font-size: 1rem;
     margin: 0 0 1rem 0;
     flex: 1;
     line-height: 1.5;
