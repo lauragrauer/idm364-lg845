@@ -1,3 +1,4 @@
+<!-- src/lib/components/Header.svelte -->
 <script>
   import { cart } from '$lib/stores/cart.svelte.js';
 </script>
@@ -52,9 +53,9 @@
   }
 
   .logo-icon {
-  width: 2.5rem;
-  height: 2.5rem;
-}
+    width: var(--icon-md);
+    height: var(--icon-md);
+  }
 
   .nav-links {
     display: flex;

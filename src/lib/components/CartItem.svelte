@@ -8,6 +8,7 @@
 
   let show_notification = $state(false);
   let notification_message = $state('');
+  let show_confirm = $state(false);
 
   let item_total = $derived(item.price * item.quantity);
 
@@ -15,11 +16,20 @@
     cart.updateQuantity(item.id, new_quantity);
   }
 
-  function remove_item() {
+  function request_remove() {
+    show_confirm = true;
+  }
+
+  function confirm_remove() {
     const item_name = item.name;
     cart.removeItem(item.id);
     notification_message = `${item_name} removed from cart`;
     show_notification = true;
+    show_confirm = false;
+  }
+
+  function cancel_remove() {
+    show_confirm = false;
   }
 
   function close_notification() {
@@ -56,9 +66,20 @@
     <span class="total-amount">${item_total.toFixed(2)}</span>
   </div>
 
-  <Button variant="danger-outline" size="small" onclick={remove_item}>
-    Remove
-  </Button>
+  {#if show_confirm}
+    <div class="confirm-buttons">
+      <Button variant="danger" size="small" onclick={confirm_remove}>
+        Yes, Remove
+      </Button>
+      <Button variant="secondary" size="small" onclick={cancel_remove}>
+        Cancel
+      </Button>
+    </div>
+  {:else}
+    <Button variant="danger-outline" size="small" onclick={request_remove}>
+      Remove
+    </Button>
+  {/if}
 </div>
 
 <style>
@@ -127,5 +148,10 @@
     .item-total {
       flex: 1;
     }
+  }
+
+  .confirm-buttons {
+    display: flex;
+    gap: var(--spacing-sm);
   }
 </style>
