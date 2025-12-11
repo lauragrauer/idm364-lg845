@@ -123,7 +123,7 @@
 
   .hero h1 {
     font-size: 3rem;
-    background: #48bb78;
+    background: #4A3728;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -164,7 +164,7 @@
   .error button {
     margin-top: 1rem;
     padding: 0.75rem 1.5rem;
-    background: #8B4513;
+    background: #dd0808;
     color: white;
     border: none;
     border-radius: 25px;

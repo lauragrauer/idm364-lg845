@@ -172,7 +172,7 @@
     width: 100%;
     padding: 1.25rem;
     margin-top: 1.5rem;
-    background: #614632;
+    background: #48bb78;
     color: white;
     border: none;
     border-radius: 30px;
