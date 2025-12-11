@@ -4,8 +4,8 @@
     icon = '🧸', 
     title = 'Your cart is empty',
     message = 'Add some adorable plushies to get started!',
-    linkHref = '/',
-    linkText = 'Continue Shopping'
+    link_href = '/',
+    link_text = 'Continue Shopping'
   } = $props();
 </script>
 
@@ -13,16 +13,16 @@
   <div class="empty-icon">{icon}</div>
   <h2>{title}</h2>
   <p>{message}</p>
-  <a href={linkHref} class="continue-shopping">{linkText}</a>
+  <a href={link_href} class="continue-shopping">{link_text}</a>
 </div>
 
 <style>
   .empty-cart {
     text-align: center;
     padding: 4rem 2rem;
-    background: var(--bg-primary, #FFF8F0);
+    background: #FFF8F0;
     border-radius: 20px;
-    border: 3px dashed var(--primary-lighter, #F4A460);
+    border: 3px dashed #F4A460;
   }
 
   .empty-icon {
@@ -31,12 +31,12 @@
   }
 
   .empty-cart h2 {
-    color: var(--text-primary, #4A3728);
+    color: #4A3728;
     margin-bottom: 0.5rem;
   }
 
   .empty-cart p {
-    color: var(--text-secondary, #8B7355);
+    color: #8B7355;
     margin-bottom: 2rem;
   }
 

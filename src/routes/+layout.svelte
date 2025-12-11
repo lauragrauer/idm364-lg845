@@ -20,7 +20,7 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background: var(--bg-secondary, #FFF5EB);
+    background: #FFF5EB;
   }
 
   main {

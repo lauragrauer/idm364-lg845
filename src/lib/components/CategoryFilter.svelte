@@ -3,13 +3,13 @@
   let { 
     categories = [],
     selected = 'all',
-    onchange = () => {},
+    onchange,
     label = 'Filter by category:',
-    allLabel = 'All Items'
+    all_label = 'All Items'
   } = $props();
 
-  function handleChange(e) {
-    onchange(e.target.value);
+  function handle_change(event) {
+    onchange(event.target.value);
   }
 </script>
 
@@ -18,11 +18,11 @@
   <select 
     id="category-filter"
     value={selected}
-    onchange={handleChange}
+    onchange={handle_change}
   >
     {#each categories as category}
       <option value={category}>
-        {category === 'all' ? allLabel : category}
+        {category === 'all' ? all_label : category}
       </option>
     {/each}
   </select>
@@ -35,10 +35,10 @@
     gap: 1rem;
     margin-bottom: 2rem;
     justify-content: center;
-    background: var(--bg-primary, #FFF8F0);
+    background: #FFF8F0;
     padding: 1rem 2rem;
     border-radius: 30px;
-    border: 2px solid var(--primary-lighter, #F4A460);
+    border: 2px solid #F4A460;
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
@@ -46,24 +46,24 @@
 
   label {
     font-weight: 600;
-    color: var(--text-primary, #4A3728);
+    color: #4A3728;
   }
 
   select {
     padding: 0.75rem 1rem;
-    border: 2px solid var(--primary-light, #D2691E);
+    border: 2px solid #D2691E;
     border-radius: 20px;
     font-size: 1rem;
     background: white;
     cursor: pointer;
     min-width: 200px;
-    color: var(--text-primary, #4A3728);
+    color: #4A3728;
     font-family: inherit;
   }
 
   select:focus {
     outline: none;
-    border-color: var(--primary, #8B4513);
+    border-color: #8B4513;
   }
 
   @media (max-width: 768px) {

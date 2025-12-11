@@ -6,11 +6,11 @@
 
   let { item } = $props();
 
-  function updateQuantity(newQuantity) {
-    cart.updateQuantity(item.id, newQuantity);
+  function update_quantity(new_quantity) {
+    cart.updateQuantity(item.id, new_quantity);
   }
 
-  function removeFromCart() {
+  function remove_from_cart() {
     if (confirm(`Remove ${item.name} from cart? 🥺`)) {
       cart.removeItem(item.id);
     }
@@ -32,7 +32,7 @@
     <QuantityInput
       id="quantity-{item.id}"
       value={item.quantity}
-      onchange={updateQuantity}
+      onchange={update_quantity}
     />
 
     <div class="item-subtotal">
@@ -40,7 +40,7 @@
       <span class="subtotal-amount">${(item.price * item.quantity).toFixed(2)}</span>
     </div>
 
-    <Button variant="danger-outline" size="small" onclick={removeFromCart}>
+    <Button variant="danger-outline" size="small" onclick={remove_from_cart}>
       🗑️ Remove
     </Button>
   </div>
@@ -52,11 +52,11 @@
     grid-template-columns: 120px 1fr auto;
     gap: 1.5rem;
     padding: 1.5rem;
-    background: var(--bg-primary, #FFF8F0);
+    background: #FFF8F0;
     border-radius: 16px;
     box-shadow: 0 2px 8px rgba(139, 69, 19, 0.1);
     align-items: center;
-    border: 2px solid var(--primary-lighter, #F4A460);
+    border: 2px solid #F4A460;
   }
 
   .item-image {
@@ -64,7 +64,7 @@
     height: 120px;
     border-radius: 12px;
     overflow: hidden;
-    background: var(--secondary, #FFFACD);
+    background: #FFFACD;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -79,19 +79,19 @@
 
   .item-details h3 {
     margin: 0 0 0.5rem 0;
-    color: var(--text-primary, #4A3728);
+    color: #4A3728;
     font-size: 1.25rem;
   }
 
   .item-size,
   .item-price {
     margin: 0.25rem 0;
-    color: var(--text-secondary, #8B7355);
+    color: #8B7355;
     font-size: 0.875rem;
   }
 
   .item-price {
-    color: var(--primary, #8B4513);
+    color: #8B4513;
     font-weight: 600;
     font-size: 1rem;
   }
@@ -118,7 +118,7 @@
   .subtotal-amount {
     font-size: 1.25rem;
     font-weight: bold;
-    color: var(--primary, #8B4513);
+    color: #8B4513;
   }
 
   @media (max-width: 768px) {

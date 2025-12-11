@@ -2,7 +2,7 @@
 <script>
   let { 
     message = 'Loading...',
-    size = 'medium' // 'small' | 'medium' | 'large'
+    size = 'medium'
   } = $props();
 
   const sizes = {
@@ -34,8 +34,8 @@
 
   .spinner {
     border-style: solid;
-    border-color: var(--border, #E8D5C4);
-    border-top-color: var(--primary, #8B4513);
+    border-color: #E8D5C4;
+    border-top-color: #8B4513;
     border-radius: 50%;
     animation: spin 1s linear infinite;
     margin: 0 auto 1rem;
@@ -46,7 +46,7 @@
   }
 
   p {
-    color: var(--text-secondary, #8B7355);
+    color: #8B7355;
     font-size: 1rem;
   }
 </style>

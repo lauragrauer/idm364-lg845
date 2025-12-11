@@ -4,18 +4,18 @@
 
   let { 
     message = 'Something went wrong',
-    showRetry = true,
-    retryText = 'Try Again',
-    onRetry = () => window.location.reload()
+    show_retry = true,
+    retry_text = 'Try Again',
+    on_retry = () => window.location.reload()
   } = $props();
 </script>
 
 <div class="error">
   <div class="error-icon">😿</div>
   <p class="error-message">{message}</p>
-  {#if showRetry}
-    <Button variant="danger" onclick={onRetry}>
-      {retryText}
+  {#if show_retry}
+    <Button variant="danger" onclick={on_retry}>
+      {retry_text}
     </Button>
   {/if}
 </div>
@@ -24,9 +24,9 @@
   .error {
     text-align: center;
     padding: 4rem 2rem;
-    background: var(--bg-primary, #FFF8F0);
+    background: #FFF8F0;
     border-radius: 20px;
-    border: 3px dashed var(--danger, #fc8181);
+    border: 3px dashed #fc8181;
   }
 
   .error-icon {
@@ -35,7 +35,7 @@
   }
 
   .error-message {
-    color: var(--danger, #fc8181);
+    color: #fc8181;
     font-size: 1.1rem;
     margin-bottom: 1.5rem;
   }

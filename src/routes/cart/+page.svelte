@@ -40,7 +40,7 @@
 
   h1 {
     font-size: 2.5rem;
-    color: var(--text-primary, #4A3728);
+    color: #4A3728;
     margin-bottom: 2rem;
   }
 

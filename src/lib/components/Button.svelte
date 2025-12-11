@@ -1,12 +1,12 @@
 <!-- src/lib/components/Button.svelte -->
 <script>
   let { 
-    variant = 'primary', // 'primary' | 'secondary' | 'danger' | 'danger-outline' | 'success'
-    size = 'medium', // 'small' | 'medium' | 'large'
-    fullWidth = false,
+    variant = 'primary',
+    size = 'medium',
+    full_width = false,
     disabled = false,
     type = 'button',
-    onclick = () => {},
+    onclick,
     children
   } = $props();
 </script>
@@ -15,7 +15,7 @@
   {type}
   {disabled}
   class="btn btn-{variant} btn-{size}"
-  class:full-width={fullWidth}
+  class:full-width={full_width}
   {onclick}
 >
   {@render children?.()}
@@ -79,7 +79,7 @@
   }
 
   .btn-danger {
-    background: var(--danger, #fc8181);
+    background: #fc8181;
     color: white;
     border: none;
   }
@@ -91,12 +91,12 @@
 
   .btn-danger-outline {
     background: transparent;
-    color: var(--danger, #fc8181);
-    border: 2px solid var(--danger, #fc8181);
+    color: #fc8181;
+    border: 2px solid #fc8181;
   }
 
   .btn-danger-outline:hover:not(:disabled) {
-    background: var(--danger, #fc8181);
+    background: #fc8181;
     color: white;
   }
 
@@ -111,12 +111,10 @@
     box-shadow: 0 4px 12px rgba(72, 187, 120, 0.4);
   }
 
-  /* Full width */
   .full-width {
     width: 100%;
   }
 
-  /* Active state */
   .btn:active:not(:disabled) {
     transform: translateY(0);
   }

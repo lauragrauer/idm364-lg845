@@ -5,7 +5,7 @@
 
   let { product } = $props();
 
-  function addToCart() {
+  function add_to_cart() {
     cart.addItem(product);
     alert(`${product.name} added to cart! 🧸`);
   }
@@ -35,7 +35,7 @@
     <span class="product-price">${product.price.toFixed(2)}</span>
     <Button 
       variant={product.quantity > 0 ? 'success' : 'secondary'}
-      onclick={addToCart}
+      onclick={add_to_cart}
       disabled={product.quantity === 0}
     >
       {product.quantity > 0 ? 'Add to Cart 🛒' : 'Out of Stock'}
@@ -45,7 +45,7 @@
 
 <style>
   .product-card {
-    background: var(--bg-primary, #FFF8F0);
+    background: #FFF8F0;
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(139, 69, 19, 0.15);
@@ -53,7 +53,7 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    border: 2px solid var(--primary-lighter, #F4A460);
+    border: 2px solid #F4A460;
   }
 
   .product-card:hover {
@@ -73,7 +73,7 @@
     width: 100%;
     height: 280px;
     overflow: hidden;
-    background: var(--secondary, #FFFACD);
+    background: #FFFACD;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -100,17 +100,17 @@
   h3 {
     margin: 0 0 0.5rem 0;
     font-size: 1.25rem;
-    color: var(--text-primary, #4A3728);
+    color: #4A3728;
     font-weight: 800;
   }
 
   .product-category {
-    color: var(--primary, #8B4513);
+    color: #8B4513;
     font-size: 0.875rem;
     font-weight: 600;
     margin: 0 0 0.5rem 0;
     text-transform: uppercase;
-    background: var(--secondary, #FFFACD);
+    background: #FFFACD;
     display: inline-block;
     padding: 0.25rem 0.75rem;
     border-radius: 20px;
@@ -118,7 +118,7 @@
   }
 
   .product-description {
-    color: var(--text-secondary, #8B7355);
+    color: #8B7355;
     font-size: 0.875rem;
     margin: 0 0 1rem 0;
     flex: 1;
@@ -139,7 +139,7 @@
   }
 
   .product-stock.out-of-stock {
-    color: var(--danger, #fc8181);
+    color: #fc8181;
   }
 
   .product-footer {
@@ -147,14 +147,14 @@
     justify-content: space-between;
     align-items: center;
     padding: 1.25rem;
-    border-top: 2px dashed var(--border, #E8D5C4);
-    background: var(--bg-secondary, #FFF5EB);
+    border-top: 2px dashed #E8D5C4;
+    background: #FFF5EB;
   }
 
   .product-price {
     font-size: 1.5rem;
     font-weight: bold;
-    color: var(--primary, #8B4513);
+    color: #8B4513;
   }
 
   @media (max-width: 768px) {

@@ -3,8 +3,8 @@
   import { cart } from '$lib/stores/cart.svelte.js';
   
   let { 
-    logoText = 'RILAKKUMA SHOP',
-    logoIcon = '🧸'
+    logo_text = 'RILAKKUMA SHOP',
+    logo_icon = '🧸'
   } = $props();
 </script>
 
@@ -12,8 +12,8 @@
   <div class="container">
     <nav>
       <a href="/" class="logo">
-        <span class="logo-icon">{logoIcon}</span>
-        <span class="logo-text">{logoText}</span>
+        <span class="logo-icon">{logo_icon}</span>
+        <span class="logo-text">{logo_text}</span>
       </a>
       
       <ul class="nav-links">
@@ -99,8 +99,8 @@
     position: absolute;
     top: -8px;
     right: -12px;
-    background: var(--secondary, #FFFACD);
-    color: var(--primary, #8B4513);
+    background: #FFFACD;
+    color: #8B4513;
     border-radius: 50%;
     min-width: 20px;
     height: 20px;

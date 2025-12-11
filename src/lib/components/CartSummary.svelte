@@ -3,13 +3,17 @@
   import { cart } from '$lib/stores/cart.svelte.js';
   import Button from './Button.svelte';
 
-  let { onCheckout = () => {}, onClearCart = () => {} } = $props();
+  let { on_checkout, on_clear_cart } = $props();
 
-  function handleClearCart() {
+  function handle_clear_cart() {
     if (confirm('Clear all items from cart?')) {
       cart.clearCart();
-      onClearCart();
+      if (on_clear_cart) on_clear_cart();
     }
+  }
+
+  function handle_checkout() {
+    if (on_checkout) on_checkout();
   }
 </script>
 
@@ -31,13 +35,13 @@
     <strong class="total-amount">${cart.total.toFixed(2)}</strong>
   </div>
 
-  <Button variant="primary" fullWidth onclick={onCheckout}>
+  <Button variant="primary" full_width={true} onclick={handle_checkout}>
     🛍️ Proceed to Checkout
   </Button>
 
   <a href="/" class="continue-link">← Continue Shopping</a>
 
-  <Button variant="danger-outline" fullWidth onclick={handleClearCart}>
+  <Button variant="danger-outline" full_width={true} onclick={handle_clear_cart}>
     🗑️ Clear Cart
   </Button>
 </aside>
@@ -46,17 +50,17 @@
   .cart-summary {
     position: sticky;
     top: 100px;
-    background: var(--bg-primary, #FFF8F0);
+    background: #FFF8F0;
     padding: 2rem;
     border-radius: 20px;
     box-shadow: 0 4px 12px rgba(139, 69, 19, 0.15);
-    border: 3px solid var(--primary-lighter, #F4A460);
+    border: 3px solid #F4A460;
   }
 
   .cart-summary h2 {
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
-    color: var(--text-primary, #4A3728);
+    color: #4A3728;
   }
 
   .summary-row {
@@ -72,21 +76,21 @@
   }
 
   .summary-row.total {
-    border-top: 2px dashed var(--border, #E8D5C4);
+    border-top: 2px dashed #E8D5C4;
     margin-top: 1rem;
     padding-top: 1rem;
     font-size: 1.25rem;
   }
 
   .total-amount {
-    color: var(--primary, #8B4513);
+    color: #8B4513;
   }
 
   .continue-link {
     display: block;
     text-align: center;
     margin: 1rem 0;
-    color: var(--primary, #8B4513);
+    color: #8B4513;
     font-weight: 600;
     transition: transform 0.2s;
   }

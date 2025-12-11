@@ -34,14 +34,14 @@
 
   h1 {
     font-size: 3rem;
-    color: var(--text-primary, #4A3728);
+    color: #4A3728;
     margin-bottom: 1rem;
     font-family: 'Nunito', sans-serif;
   }
 
   p {
     font-size: 1.25rem;
-    color: var(--text-secondary, #8B7355);
+    color: #8B7355;
   }
 
   @media (max-width: 768px) {

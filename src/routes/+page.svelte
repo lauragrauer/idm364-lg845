@@ -1,6 +1,5 @@
 <!-- src/routes/+page.svelte -->
 <script>
-  import { onMount } from 'svelte';
   import { supabase } from '$lib/supabaseClient.js';
   import ProductCard from '$lib/components/ProductCard.svelte';
   import Hero from '$lib/components/Hero.svelte';
@@ -11,22 +10,32 @@
   let products = $state([]);
   let loading = $state(true);
   let error = $state(null);
-  let selectedCategory = $state('all');
+  let selected_category = $state('all');
+
+  // $derived should be a simple expression, NOT a function
+  const categories = $derived(['all', ...new Set(products.map(p => p.category))]);
+  
+  const filtered_products = $derived(
+    selected_category === 'all' 
+      ? products 
+      : products.filter(p => p.category === selected_category)
+  );
 
   $effect(() => {
-    fetchProducts();
+    fetch_products();
   });
 
-  async function fetchProducts() {
+  async function fetch_products() {
     try {
       loading = true;
       error = null;
-      const { data, error: fetchError } = await supabase
+      
+      const { data, error: fetch_error } = await supabase
         .from('products')
         .select('*')
         .order('name', { ascending: true });
 
-      if (fetchError) throw fetchError;
+      if (fetch_error) throw fetch_error;
       products = data;
     } catch (err) {
       error = err.message;
@@ -36,18 +45,8 @@
     }
   }
 
-  const categories = $derived(() => {
-    const cats = [...new Set(products.map(p => p.category))];
-    return ['all', ...cats];
-  });
-
-  const filteredProducts = $derived(() => {
-    if (selectedCategory === 'all') return products;
-    return products.filter(p => p.category === selectedCategory);
-  });
-
-  function handleCategoryChange(category) {
-    selectedCategory = category;
+  function handle_category_change(category) {
+    selected_category = category;
   }
 </script>
 
@@ -66,18 +65,18 @@
     {:else if error}
       <ErrorMessage 
         message="Error loading products: {error}" 
-        onRetry={fetchProducts}
+        on_retry={fetch_products}
       />
     {:else}
       <CategoryFilter 
-        categories={categories()}
-        selected={selectedCategory}
-        onchange={handleCategoryChange}
-        allLabel="All Plushies 🧸"
+        categories={categories}
+        selected={selected_category}
+        onchange={handle_category_change}
+        all_label="All Plushies 🧸"
       />
 
       <div class="products-grid">
-        {#each filteredProducts() as product (product.id)}
+        {#each filtered_products as product (product.id)}
           <ProductCard {product} />
         {:else}
           <p class="no-products">No plushies found in this category. 😢</p>
@@ -103,7 +102,7 @@
     grid-column: 1 / -1;
     text-align: center;
     padding: 4rem 0;
-    color: var(--text-secondary, #8B7355);
+    color: #8B7355;
     font-size: 1.25rem;
   }
 
