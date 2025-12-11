@@ -96,11 +96,12 @@
     flex-direction: column;
   }
 
-  h3 {
-    margin: 0 0 0.5rem 0;
-    font-size: 1.25rem;
-    color: #4A3728;
-  }
+h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+  color: #4A3728;
+  font-weight: 800;
+}
 
   .product-category {
     color: #8B4513;
