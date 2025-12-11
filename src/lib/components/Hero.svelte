@@ -4,7 +4,7 @@
 
 <section class="hero">
   <img src="/images/icon.png" alt="Rilakkuma" class="hero-icon" />
-  <h1>Welcome to Rilakkuma Shop</h1>
+  <h1>Welcome to Rilakkuma Shopp</h1>
   <p>Find your new cuddly friend from our collection of adorable plushies!</p>
 </section>
 
