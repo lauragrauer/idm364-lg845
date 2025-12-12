@@ -14,12 +14,12 @@
     padding: var(--spacing-xl) 0;
   }
 
-  .hero-icon {
-    width: var(--icon-xl);
-    height: var(--icon-xl);
-    margin-bottom: var(--spacing-md);
-    animation: bounce 2s ease-in-out infinite;
-  }
+.hero-icon {
+  width: 10rem;
+  height: 10rem;
+  margin-bottom: var(--spacing-md);
+  animation: bounce 2s ease-in-out infinite;
+}
 
   @keyframes bounce {
     0%, 100% { transform: translateY(0); }
