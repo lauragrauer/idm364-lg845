@@ -30,7 +30,7 @@
   header {
   background: var(--color-header);
   color: white;
-  padding: 2rem var(--spacing-md);
+  padding: 1.25rem 1rem;
   box-shadow: var(--shadow-md);
   position: sticky;
   top: 0;
