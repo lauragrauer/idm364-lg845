@@ -53,9 +53,9 @@
   }
 
   .logo-icon {
-    width: var(--icon-md);
-    height: var(--icon-md);
-  }
+  width: 3rem;
+  height: 3rem;
+}
 
   .nav-links {
     display: flex;
