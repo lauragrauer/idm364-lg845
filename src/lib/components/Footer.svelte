@@ -28,8 +28,8 @@
   }
 
   .footer-icon {
-    width: var(--icon-md);
-    height: var(--icon-md);
+    width: 2rem;
+    height: 2rem;
   }
 
   footer p {
