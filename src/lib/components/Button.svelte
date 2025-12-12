@@ -97,9 +97,11 @@
   }
 
   .btn-danger-outline:hover:not(:disabled) {
-    background: var(--color-danger);
-    color: white;
-  }
+  background: var(--color-danger);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(252, 129, 129, 0.4);
+}
 
   .full-width {
     width: 100%;
