@@ -28,14 +28,14 @@
 
 <style>
   header {
-    background: var(--color-header);
-    color: white;
-    padding: var(--spacing-md) var(--spacing-sm);
-    box-shadow: var(--shadow-md);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
+  background: var(--color-header);
+  color: white;
+  padding: var(--spacing-lg) var(--spacing-md);
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
 
   nav {
     display: flex;
